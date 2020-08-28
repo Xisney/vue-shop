@@ -1,15 +1,5 @@
 @import "./normalize.css";
 
-/*:root -> 获取根元素html*/
-:root {
-  --color-text: #666;
-  --color-high-text: #ff5777;
-  --color-tint: #ff8198;
-  --color-background: #fff;
-  --font-size: 14px;
-  --line-height: 1.5;
-}
-
 *,
 *::before,
 *::after {
@@ -22,30 +12,15 @@ html,body,#app{
   height: 100%;
 }
 
-a {
-  color: var(--color-text);
-  text-decoration: none;
+.el-breadcrumb{
+  margin-bottom: 15px;
 }
 
-
-.clear-fix::after {
-  clear: both;
-  content: '';
-  display: block;
-  width: 0;
-  height: 0;
-  visibility: hidden;
+.el-card{
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, .15) !important;
 }
 
-.clear-fix {
-  zoom: 1;
-}
-
-.left {
-  float: left;
-}
-
-.right {
-  float: right;
+.el-pagination{
+  margin-top: 15px;
 }
 

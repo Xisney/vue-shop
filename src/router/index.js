@@ -8,24 +8,31 @@ Vue.use(VueRouter)
 // 导入组件
 const Login = () => import('components/login/Login');
 const Home = () => import('components/home/Home');
+const Welcome = () => import('components/home/Welcome')
+const User = () => import('components/user/User')
 
 const routes = [
-  {path:'/',redirect:'/login'},
-  {path:'/login',component: Login},
-  {path:'/home',component: Home}
+  { path: '/', redirect: '/login' },
+  { path: '/login', component: Login },
+  {
+    path: '/home', component:Home,redirect:'/welcome', children: [
+      {path: '/welcome',component:Welcome},
+      {path:'/users',component:User}
+    ]
+  }
 ]
 
 const router = new VueRouter({
   routes,
-  mode:'history'
+  mode: 'history'
 });
 
 // 设置全局导航守卫，监听用户是否登录
-router.beforeEach((to,from,next)=>{
+router.beforeEach((to, from, next) => {
   // 访问登录页面直接放行
-  if (to.path==='/login') return next()
+  if (to.path === '/login') return next()
   const tokenStr = window.sessionStorage.getItem('token')
-  if(!tokenStr) return next('/login')
+  if (!tokenStr) return next('/login')
   next()
 })
 
