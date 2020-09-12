@@ -27,7 +27,7 @@
         <el-table-column prop="username" label="姓名" width="180"></el-table-column>
         <el-table-column prop="mobile" label="电话" width="180"></el-table-column>
         <el-table-column prop="email" label="邮箱"></el-table-column>
-        <el-table-column prop="role_name" label="用户身份"></el-table-column>
+        <el-table-column prop="role_name" label="用户角色"></el-table-column>
         <el-table-column label="当前状态">
           <template v-slot="scope">
             <el-switch v-model="scope.row.mg_state" @change="changeUserState(scope.row)"></el-switch>
@@ -55,7 +55,12 @@
               placement="top"
               :enterable="false"
             >
-              <el-button type="warning" icon="el-icon-setting" size="mini"></el-button>
+              <el-button
+                type="warning"
+                icon="el-icon-setting"
+                size="mini"
+                @click="updateUserRole(scope.row)"
+              ></el-button>
             </el-tooltip>
           </template>
         </el-table-column>
@@ -83,7 +88,7 @@
         </span>
       </el-dialog>
 
-      <!-- 编辑用户区域 -->
+      <!-- 编辑用户对话框 -->
       <el-dialog title="修改用户信息" :visible.sync="editUserVisible" width="50%">
         <el-form ref="editUserForm" :model="editUserForm" label-width="80px" :rules="editUserRules">
           <el-form-item label="用户名:">
@@ -99,6 +104,31 @@
         <span slot="footer" class="dialog-footer">
           <el-button @click="editUserVisible = false">取 消</el-button>
           <el-button type="primary" @click="confirmUserEdit">确 定</el-button>
+        </span>
+      </el-dialog>
+
+      <!-- 编辑用户角色对话框 -->
+      <el-dialog
+        title="角色分配"
+        :visible.sync="setRoledialogVisible"
+        width="50%"
+      >
+        <div>
+          <p>用户名：{{currentUser.username}}</p>
+          <br />
+          <p>用户角色：{{currentUser.role_name}}</p>
+        </div>
+        <el-select v-model="currentRole" placeholder="请选择新角色">
+          <el-option
+            v-for="item in rolesList"
+            :key="item.id"
+            :label="item.roleName"
+            :value="item.id"
+          ></el-option>
+        </el-select>
+        <span slot="footer" class="dialog-footer">
+          <el-button @click="setRoledialogVisible = false">取 消</el-button>
+          <el-button type="primary" @click="confirmUpdateUser">确 定</el-button>
         </span>
       </el-dialog>
 
@@ -192,6 +222,10 @@ export default {
           { validator: checkMobile, trigger: "blur" },
         ],
       },
+      setRoledialogVisible: false,
+      currentUser: {},
+      rolesList:[],
+      currentRole:'',
     };
   },
   methods: {
@@ -291,7 +325,7 @@ export default {
           }).then((res) => {
             if (res.meta.status !== 200)
               return this.$message.error(res.meta.msg);
-            this.getUserList()
+            this.getUserList();
             this.$message({
               type: "success",
               message: "删除成功!",
@@ -305,6 +339,30 @@ export default {
           });
         });
     },
+    updateUserRole(user) {
+      request({
+        url:'roles'
+      }).then(res=>{
+        if (res.meta.status!==200) return this.$message.error(res.meta.msg)
+        this.rolesList = res.data
+      })
+      this.currentUser = user;
+      this.setRoledialogVisible = true;
+    },
+    // 确实用户角色的修改
+    confirmUpdateUser(){
+      request({
+        url:`users/${this.currentUser.id}/role`,
+        method:'put',
+        data:{rid:this.currentRole}
+      }).then(res=>{
+        if(res.meta.status!==200) return this.$message.error(res.meta.msg)
+        this.$message.success('更新用户角色成功')
+        this.getUserList()
+        this.setRoledialogVisible = false
+      })
+      
+    }
   },
 };
 </script>

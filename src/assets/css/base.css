@@ -24,3 +24,27 @@ html,body,#app{
   margin-top: 15px;
 }
 
+.el-table{
+  margin-top: 10px;
+}
+
+.el-tag{
+  margin: 7px;
+}
+
+.tbClass{
+  border-top: 1px solid #e6e6e6;
+}
+
+.bbClass{
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.vcenter{
+  display: flex;
+  align-items: center;
+}
+
+.el-select{
+  margin-top: 10px;
+}
