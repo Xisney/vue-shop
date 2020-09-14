@@ -5,6 +5,10 @@ import router from './router'
 // 导入整个文件？
 import element from 'components/el.js'
 
+import ZkTable from 'vue-table-with-tree-grid'
+
+Vue.component('tree-table', ZkTable)
+
 Vue.config.productionTip = false
 
 new Vue({

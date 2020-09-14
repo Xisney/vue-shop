@@ -5,7 +5,7 @@ import {
     Form, FormItem, Container, Header, Main, Aside,
     Menu,Submenu,MenuItem,Breadcrumb,BreadcrumbItem,
     Card,Row,Col,Table,TableColumn,Switch,Tooltip,
-    Pagination,Dialog,MessageBox,Tag,Tree,Option
+    Pagination,Dialog,MessageBox,Tag,Tree,Option,Cascader
 } from 'element-ui';
 
 Vue.use(Button);
@@ -34,6 +34,7 @@ Vue.use(Dialog);
 Vue.use(Tag);
 Vue.use(Tree);
 Vue.use(Option);
+Vue.use(Cascader);
 
 Vue.prototype.$message = Message;
 Vue.prototype.$confirm = MessageBox.confirm
