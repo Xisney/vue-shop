@@ -83,7 +83,6 @@ export default {
       request({
         url: "/menus",
       }).then((res) => {
-        console.log(res);
         if (res.meta.status !== 200) return this.$message(res.meta.msg);
         this.menuList = res.data;
       });

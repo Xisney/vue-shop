@@ -13,6 +13,7 @@ const User = () => import('components/user/User')
 const Right = () => import('components/power/Right')
 const Role = () => import('components/power/Role')
 const Cate = () => import('components/goods/Cate')
+const Params = () => import('components/goods/Params')
 
 const routes = [
   { path: '/', redirect: '/login' },
@@ -23,7 +24,8 @@ const routes = [
       {path:'/users',component:User},
       {path:'/rights',component:Right},
       {path: '/roles',component:Role},
-      {path: '/categories',component:Cate}
+      {path: '/categories',component:Cate},
+      {path:'/params',component:Params}
     ]
   }
 ]
