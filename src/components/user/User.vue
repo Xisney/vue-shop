@@ -118,7 +118,7 @@
           <br />
           <p>用户角色：{{currentUser.role_name}}</p>
         </div>
-        <el-select v-model="currentRole" placeholder="请选择新角色">
+        <el-select v-model="currentRole" placeholder="请选择新角色" style="margin-top:10px">
           <el-option
             v-for="item in rolesList"
             :key="item.id"

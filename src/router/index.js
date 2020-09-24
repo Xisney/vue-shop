@@ -14,6 +14,8 @@ const Right = () => import('components/power/Right')
 const Role = () => import('components/power/Role')
 const Cate = () => import('components/goods/Cate')
 const Params = () => import('components/goods/Params')
+const Goods = () => import('components/goods/Goods')
+const Add = () => import('components/goods/Add') 
 
 const routes = [
   { path: '/', redirect: '/login' },
@@ -25,7 +27,9 @@ const routes = [
       {path:'/rights',component:Right},
       {path: '/roles',component:Role},
       {path: '/categories',component:Cate},
-      {path:'/params',component:Params}
+      {path:'/params',component:Params},
+      {path: '/goods',component:Goods},
+      {path: '/goods/add',component:Add}
     ]
   }
 ]

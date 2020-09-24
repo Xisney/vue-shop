@@ -152,7 +152,6 @@ export default {
         params: this.queryInfo,
       }).then((res) => {
         if (res.meta.status !== 200) return this.$message.error(res.meta.msg);
-        console.log(res);
         this.total = res.data.total;
         this.cateList = res.data.result;
       });
