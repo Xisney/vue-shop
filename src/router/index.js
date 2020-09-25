@@ -17,6 +17,7 @@ const Params = () => import('components/goods/Params')
 const Goods = () => import('components/goods/Goods')
 const Add = () => import('components/goods/Add') 
 const Order = () => import('components/order/Order') 
+const Report = () => import('components/report/Report') 
 
 const routes = [
   { path: '/', redirect: '/login' },
@@ -31,7 +32,8 @@ const routes = [
       {path:'/params',component:Params},
       {path: '/goods',component:Goods},
       {path: '/goods/add',component:Add},
-      {path:'/orders',component:Order}
+      {path:'/orders',component:Order},
+      {path:'/reports',component:Report}
     ]
   }
 ]
